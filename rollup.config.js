@@ -6,23 +6,24 @@ import envify from 'envify';
 import path from 'path';
 
 export default {
-    entry: path.join(__dirname, 'routes/index/client.js'),
-    format: 'iife',
-    moduleName: 'app',
+    input: path.join(__dirname, 'routes/index/client.js'),
+    output: {
+        file: path.join(__dirname, './static/bundle.js'),
+        format: 'iife',
+        name: 'app'
+    },
     plugins: [
         browserifyPlugin(markoify),
         browserifyPlugin(envify),
         nodeResolvePlugin({
-            jsnext: true,  // Default: false
-            main: true,  // Default: true
-            browser: true,  // Default: false
+            mainFields: ['module', 'main'],
+            browser: true, // Default: false
             preferBuiltins: false,
-            extensions: [ '.js', '.marko' ]
+            extensions: ['.js', '.marko']
         }),
         commonjsPlugin({
-            include: [ 'node_modules/**', '**/*.marko', '**/*.js'],
-            extensions: [ '.js', '.marko' ]
+            include: ['node_modules/**', '**/*.marko', '**/*.js'],
+            extensions: ['.js', '.marko']
         })
-    ],
-    dest: path.join(__dirname, './static/bundle.js')
+    ]
 };
