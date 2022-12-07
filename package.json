@@ -20,7 +20,7 @@
   "homepage": "https://github.com/marko-js-samples/marko-rollup",
   "dependencies": {
     "compression": "^1.6.2",
-    "express": "^4.15.0",
+    "express": "^4.17.3",
     "marko": "^4.0.0-rc.24",
     "serve-static": "^1.12.0"
   },
